@@ -11,6 +11,7 @@
                 date: parseMySQLDate(model && model.date),
                 perms: new Chmod(model && model.rights),
                 content: model && model.content || '',
+                params:  '',
                 recursive: false,
                 fullPath: function() {
                     var path = this.path.filter(Boolean);
@@ -46,6 +47,11 @@
         Item.prototype.isEditable = function() {
             return !this.isFolder() && fileManagerConfig.isEditableFilePattern.test(this.model.name);
         };
+
+        Item.prototype.isRunnable = function() {
+            return !this.isFolder() && this.model.perms.owner.exec;
+        };
+
 
         Item.prototype.isImage = function() {
             return fileManagerConfig.isImageFilePattern.test(this.model.name);

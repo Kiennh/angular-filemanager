@@ -68,7 +68,7 @@
             if (singleFilename && items.length === 1) {
                 data.singleFilename = singleFilename;
             }
-            
+
             self.inprocess = true;
             self.error = '';
             $http.post(apiUrl, data).success(function(data, code) {
@@ -155,7 +155,7 @@
             return deferred.promise;
         };
 
-        ApiHandler.prototype.getContent = function(apiUrl, itemPath) {            
+        ApiHandler.prototype.getContent = function(apiUrl, itemPath) {
             var self = this;
             var deferred = $q.defer();
             var data = {
@@ -233,7 +233,7 @@
                 !$window.saveAs && $window.console.log('Your browser dont support ajax download, downloading by default');
                 return !!$window.open(url, '_blank', '');
             }
-            
+
             var deferred = $q.defer();
             self.inprocess = true;
             $http.get(url).success(function(data) {
@@ -262,7 +262,7 @@
                 !$window.saveAs && $window.console.log('Your browser dont support ajax download, downloading by default');
                 return !!$window.open(url, '_blank', '');
             }
-            
+
             self.inprocess = true;
             $http.get(apiUrl).success(function(data) {
                 var bin = new $window.Blob([data]);
@@ -330,7 +330,7 @@
                 permsCode: permsCode,
                 recursive: !!recursive
             };
-            
+
             self.inprocess = true;
             self.error = '';
             $http.post(apiUrl, data).success(function(data, code) {
@@ -343,11 +343,11 @@
             return deferred.promise;
         };
 
-        ApiHandler.prototype.createFolder = function(apiUrl, path) {
+        ApiHandler.prototype.createResource = function(apiUrl, path, type) {
             var self = this;
             var deferred = $q.defer();
             var data = {
-                action: 'createFolder',
+                action: type,
                 newPath: path
             };
 
@@ -360,7 +360,28 @@
             })['finally'](function() {
                 self.inprocess = false;
             });
+
+            return deferred.promise;
+        };
         
+        ApiHandler.prototype.run = function(apiUrl, path, params) {
+            var self = this;
+            var deferred = $q.defer();
+            var data = {
+                action: path,
+                params: params
+            };
+
+            self.inprocess = true;
+            self.error = '';
+            $http.post(apiUrl, data).success(function(data, code) {
+                self.deferredHandler(data, deferred, code);
+            }).error(function(data, code) {
+                self.deferredHandler(data, deferred, code, $translate.instant('error_run'));
+            })['finally'](function() {
+                self.inprocess = false;
+            });
+
             return deferred.promise;
         };
 

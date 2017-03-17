@@ -28,5 +28,8 @@
     "jquery": "~2.2.0",
     "bootswatch": "3.3.6+1",
     "ng-file-upload": "^12.0.1"
+  },
+  "devDependencies": {
+    "angular-route": "^1.5.0"
   }
 }

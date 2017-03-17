@@ -29,7 +29,7 @@
 .modal-fullscreen .modal-content {
   bottom: 0;
   left: 0;
-  position: absolute;
+  /* position: absolute; */
   right: 0;
   top: 0;
 }

@@ -99,7 +99,11 @@
             open: 'Open',
             these_elements: 'these {{total}} elements',
             new_folder: 'New folder',
-            download_as_zip: 'Download as ZIP'
+            download_as_zip: 'Download as ZIP',
+            new_file: 'New file',
+            run: 'Run',
+            params: 'Parameters',
+            file_name: 'File name'
         });
 
         $translateProvider.translations('he', {

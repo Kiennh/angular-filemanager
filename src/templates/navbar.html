@@ -74,6 +74,11 @@
                                         <i class="glyphicon glyphicon-cloud-upload"></i> {{"upload_files" | translate}}
                                     </a>
                                 </li>
+                                <li role="presentation" ng-show="config.allowedActions.hugo" ng-click="modal('hugo') && hugo()">
+                                    <a href="" role="menuitem" tabindex="-1">
+                                        <i class="glyphicon glyphicon-header"></i> {{"hugo" | translate}}
+                                    </a>
+                                </li>
                             </ul>
                         </div>
                     </div>

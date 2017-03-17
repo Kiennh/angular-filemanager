@@ -63,6 +63,9 @@ gulp.task('lint', function () {
       },
       'globals': {
           'angular': true,
+          'initMarkdownEditor': true,
+          'updateTextArea': true,
+					'logjs': true,
           'jQuery': true
       },
       'extends': 'eslint:recommended'
